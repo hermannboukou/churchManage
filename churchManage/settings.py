@@ -38,6 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+    'church.apps.ChurchConfig',
+    'meetings.apps.MeetingsConfig',
+    'members.apps.MembersConfig',
+    'departments.apps.DepartmentsConfig',
+    'treasury.apps.TreasuryConfig',
+    'simple_history',
+    'school.apps.SchoolConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +128,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email settings (for birthday reminders)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Use console for development
+DEFAULT_FROM_EMAIL = 'no-reply@churchmanage.com'
+# For production, you would configure a real SMTP server:
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'your_smtp_host'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your_email@example.com'
+# EMAIL_HOST_PASSWORD = 'your_email_password'
