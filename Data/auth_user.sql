@@ -1,0 +1,1 @@
+INSERT INTO "auth_user"("id", "password", "last_login", "is_superuser", "username", "last_name", "email", "is_staff", "is_active", "date_joined", "first_name") VALUES (1, 'pbkdf2_sha256$1000000$DniY5mtYAuSReRsOgdNM9K$BB81aMu07MZM9rrSMUOF6JG36MCVtEpVcNZ7/pCSs4c=', '2025-10-10 10:11:29.989160', 1, 'hermann', '', 'bthg@hermann.dev', 1, 1, '2025-10-10 08:51:46.651633', '');

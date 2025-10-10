@@ -7,4 +7,4 @@ class ChurchAdmin(admin.ModelAdmin):
     search_fields = ('name', 'ville', 'responsable', 'country__name')
     list_filter = ('country', 'ville', 'created_at')
     ordering = ('name',)
-    readonly_fields = ('created_at', 'updated_at')
+   # readonly_fields = ('created_at', 'updated_at')

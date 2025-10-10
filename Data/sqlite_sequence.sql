@@ -1,0 +1,17 @@
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('django_migrations', 30);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('django_admin_log', 23);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('django_content_type', 24);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('auth_permission', 96);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('auth_group', 4);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('auth_user', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('core_country', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('church_church', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('meetings_meeting', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('meetings_event', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('departments_department', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('members_member', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('departments_role', 6);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('departments_departmentmember', 1);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('treasury_collectiontype', 3);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('treasury_paymentmethod', 4);
+INSERT INTO "sqlite_sequence"("name", "seq") VALUES ('auth_group_permissions', 127);
