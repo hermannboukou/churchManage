@@ -5,10 +5,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a83d470-4425-411b-a0c1-67d7efb67966" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/churchManage/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/theme/templates/dashboard.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/church/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/church/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_group.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_group.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_group_permissions.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_group_permissions.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_permission.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_permission.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_user.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_user.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_user_groups.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_user_groups.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_user_user_permissions.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/auth_user_user_permissions.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/church_church.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/church_church.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/core_country.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/core_country.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/country_country.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/departments_department.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/departments_department.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/departments_departmentmember.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/departments_departmentmember.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/departments_role.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/departments_role.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/django_admin_log.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/django_admin_log.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/django_content_type.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/django_content_type.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/django_migrations.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/django_session.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/django_session.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/hearing_audiences.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/hearing_audiences.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/hearing_audiences.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/meetings_attendance.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/meetings_attendance.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/meetings_audiences.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/meetings_event.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/meetings_event.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/meetings_meeting.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/meetings_meeting.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/members_historicalmember.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/members_historicalmember.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/members_member.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/members_member.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/school_module.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/school_module.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/school_promotion.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/school_promotion.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/school_session.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/school_session.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/sqlite_sequence.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/sqlite_sequence.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_collection.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_collection.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_collectiontype.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_collectiontype.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_historicalcollection.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_historicalcollection.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_paymentmethod.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/treasury_paymentmethod.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/churchManage/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/churchManage/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meetings/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/meetings/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/churchManage/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/churchManage/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,13 +89,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/boukouhermann/PycharmProjects/churchManage/theme/templates"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/theme/templates" />
+      <recent name="$PROJECT_DIR$/churchManage" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

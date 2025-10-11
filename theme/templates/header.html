@@ -1,0 +1,155 @@
+{% load static tailwind_tags %}
+{% load static %}
+<header class="theme-transition-ready bg-white dark:bg-gradient-to-r dark:from-cyan-500 dark:to-pink-600 shadow-lg py-4 w-full" id="En-tête Moderne">
+    <div class="mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+                    Logo</h1>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="{% url 'dashboard' %}"
+                       class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-gray-50 cursor-pointer rounded">Accueil</a>
+                    <!-- <a href="#"
+                        class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer rounded">Produits</a>-->
+                    <a href="#"
+                       class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-gray-50 cursor-pointer rounded">Services</a>
+                    <a href="{% url 'calendar' %}"
+                       class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-gray-50 cursor-pointer rounded">Planning</a>
+                    <div class="relative group">
+                        <a href="#"
+                           class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-gray-50 cursor-pointer rounded transition-all duration-200 flex items-center group">
+                            Planning
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-200"
+                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg theme-transition-ready bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="py-1">
+                                <a href="{% url 'all_events' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Liste des événements</a>
+                                <a href="{% url 'calendar' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Calendrier</a>
+                                <a href="{% url 'all_events' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Liste </a>
+                                <a href="{% url 'progression_audience' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Cumul Graphique</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="relative group">
+                        <a href="#"
+                           class="theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-gray-50 cursor-pointer rounded transition-all duration-200 flex items-center group">
+                            Statistiques
+                            <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-200"
+                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </a>
+                        <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg theme-transition-ready bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="py-1">
+                                <a href="{% url 'audiences_list' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Liste par Réunion / Eglise</a>
+                                <a href="{% url 'cumuls_audience' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Cumul annuel</a>
+                                <a href="{% url 'liste_audiences' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Liste Audiences</a>
+                                <a href="{% url 'progression_audience' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Cumul Graphique</a>
+<a href="{% url 'progression_annuelle' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Cumul Graphique Annuel</a>
+                                <a href="{% url 'report' %}"
+                                   class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">
+                                    Rapport Audiences</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Bouton de basculement du thème audience_statistics-->
+                <div class="hidden md:flex space-x-4">
+                    <button onclick="toggleTheme()" class="theme-transition-ready px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white cursor-pointer rounded">
+                        {% include 'icons/toggleTheme.svg' %}
+
+                    </button>
+
+                    <a href="{% url 'logout' %}" class="theme-transition-ready px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white cursor-pointer rounded">
+                        Déconnexion
+                    </a>
+                    <!--<button class="theme-transition-ready px-4 py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 cursor-pointer rounded">
+                        Inscription
+                    </button>-->
+                </div>
+                <button id="modern-menu-button"
+                        onclick="this.querySelector('.menu-open').classList.toggle('hidden'); this.querySelector('.menu-close').classList.toggle('hidden'); document.getElementById('modern-mobile-menu').classList.toggle('hidden');"
+                        class="md:hidden theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="menu-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path class="menu-close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <nav id="modern-mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+            <a href="#"
+               class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2 cursor-pointer rounded">Accueil</a>
+            <a href="#"
+               class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2 cursor-pointer rounded">Produits</a>
+            <a href="#"
+               class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2 cursor-pointer rounded">Services</a>
+            <a href="#"
+               class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 py-2 cursor-pointer rounded">Contact</a>
+
+            <div class="relative group">
+                <a href="#"
+                   class="block theme-transition-ready text-gray-600 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400 cursor-pointer rounded transition-all duration-200 flex items-center group">Produits
+                    <svg class="w-4 h-4 ml-1 transform group-hover:rotate-180 transition-transform duration-200"
+                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </a>
+                <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg theme-transition-ready bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div class="py-1">
+                        <a href="#"
+                           class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">Nouveautés</a>
+                        <a href="#"
+                           class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">Promotions</a>
+                        <a href="#"
+                           class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-purple-50 hover:text-purple-600 theme-transition-ready bg-white dark:bg-gray-700 dark:hover:bg-purple-50 dark:hover:text-purple-600">Catégories</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="pt-4 space-y-2">
+                <button class="w-full theme-transition-ready px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 text-white cursor-pointer rounded">
+                    Connexion
+                </button>
+                <button class="w-full theme-transition-ready px-4 py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 cursor-pointer rounded">
+                    Inscription
+                </button>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+

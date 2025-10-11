@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+<h1 class="text-3xl font-bold underline">{% trans "Welcome to the Dashboard" %}</h1>
+<p>{% trans "This is your application dashboard. More content will be added here." %}</p>
+<p>{% trans "Current user" %}: {{ user.username }}</p>
+{% endblock content %}

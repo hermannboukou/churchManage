@@ -1,0 +1,19 @@
+{% load static tailwind_tags %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}{% endblock title %}
+        Church Manager
+    </title>
+
+    {% tailwind_css %}
+</head>
+<body class="min-h-screen bg-white dark:bg-gray-900">
+ {% block content %} {% endblock content %}
+</body>
+</html>

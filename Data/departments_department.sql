@@ -1,1 +1,0 @@
-INSERT INTO "departments_department"("id", "name", "description", "created_at", "updated_at", "church_id") VALUES (1, 'Anciens', 'Le département des anciens responsable spirituel de l''église', '2025-10-10 11:15:08.559902', '2025-10-10 11:15:08.559916', 1);

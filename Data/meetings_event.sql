@@ -1,1 +1,0 @@
-INSERT INTO "meetings_event"("id", "title", "start_datetime", "end_datetime", "description", "created_at", "updated_at", "church_id", "meeting_id") VALUES (1, 'Intercession', '2025-10-06 18:00:00', '2025-10-06 19:00:00', 'Jeûne et prière sur le baptême du Saint Esprit', '2025-10-10 10:31:18.252245', '2025-10-10 10:31:18.252253', 1, 1);
