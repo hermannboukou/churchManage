@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('core', '0001_initial'),
+        ('meetings', '0001_initial'),
     ]
 
     operations = [
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('infos', models.TextField(blank=True, max_length=255, null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('country', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='core.country')),
+                ('country', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='meetings.country')),
                 ('parent', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='children', to='church.church')),
             ],
             options={

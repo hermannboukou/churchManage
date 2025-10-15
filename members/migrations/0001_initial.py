@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('core', '0001_initial'),
+        ('meetings', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('marital_status', models.CharField(blank=True, choices=[('SINGLE', 'Célibataire'), ('MARRIED', 'Marié(e)'), ('DIVORCED', 'Divorcé(e)'), ('WIDOWED', 'Veuf(ve)')], max_length=20, verbose_name='État civil')),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
-                ('country', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='core.country', verbose_name='Pays de nationalité')),
+                ('country', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='meetings.country', verbose_name='Pays de nationalité')),
                 ('user', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL, verbose_name='Compte utilisateur')),
             ],
             options={

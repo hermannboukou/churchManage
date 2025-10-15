@@ -1,15 +1,5 @@
+# Create your models here.
 from django.db import models
-
-# class Country(models.Model):
-#     """Represents a country."""
-#     name = models.CharField(max_length=100, unique=True, help_text="The full name of the country.")
-#     code = models.CharField(max_length=2, unique=True, help_text="The 2-letter country code (e.g., US, FR).")
-#
-#     class Meta:
-#         verbose_name_plural = "Countries"
-#
-#     def __str__(self):
-#         return self.name
 
 
 # Create your models here.

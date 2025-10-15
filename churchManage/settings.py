@@ -171,10 +171,10 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
 # Email settings (for birthday reminders)
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # Use console for development
+EMAIL_BACKEND = 'django.meetings.mail.backends.console.EmailBackend' # Use console for development
 DEFAULT_FROM_EMAIL = 'no-reply@churchmanage.com'
 # For production, you would configure a real SMTP server:
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.meetings.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'your_smtp_host'
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True

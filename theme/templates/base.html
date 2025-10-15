@@ -1,24 +1,89 @@
 {% load static tailwind_tags %}
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+
+<!doctype html>
+<html lang="fr">
 <head>
-    <title>Django Tailwind</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8"/>
+    <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>
+        {% block title %}{% endblock title %}
+            Church Manager
+    </title>
+    <link rel="icon" href="favicon.ico">
+    <!-- -->
+    <link href="{% static 'style.css' %}" rel="stylesheet">
     {% tailwind_css %}
+    {% block extra_css %}{% endblock %}
+    {% block extra_head %}{% endblock %}
+
+
+
+
 </head>
-
-<body class="bg-gray-50 text-black font-serif leading-normal tracking-normal">
-
-<div class="container mx-auto">
-
-    <section class="flex items-center justify-center h-screen">
-        <h1 class="text-5xl">Django + Tailwind = ❤️</h1>
-    <br>
-    <br>
-    {% block content %} {% endblock content %}
-    </section>
+<body
+        x-data="{ page: 'ecommerce', 'loaded': true, 'darkMode': false, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }"
+        x-init="
+         darkMode = JSON.parse(localStorage.getItem('darkMode'));
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
+        :class="{'dark bg-gray-900': darkMode === true}"
+>
+<!-- ===== Preloader Start=====-->
+<div
+        x-show="loaded"
+        x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})"
+        class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black"
+>
+    <div
+            class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-brand-500 border-t-transparent"
+    ></div>
 </div>
+
+<!-- ===== Preloader End ===== -->
+
+<!-- ===== Page Wrapper Start ===== -->
+<div class="flex h-screen overflow-hidden">
+    <!-- ===== Sidebar Start ===== -->
+        {% include 'menu.html' %}
+    <!-- ===== Sidebar End ===== -->
+
+    <!-- ===== Content Area Start ===== -->
+    <div
+            class="relative flex flex-1 flex-col overflow-x-hidden overflow-y-auto"
+    >
+    <!-- Small Device Overlay Start -->
+
+
+           <!-- Small Device Overlay Start -->
+        <div
+                :class="sidebarToggle ? 'block xl:hidden' : 'hidden'"
+                class="fixed z-50 h-screen w-full bg-gray-900/50"
+        ></div>
+        <!-- Small Device Overlay End -->
+
+    <!-- Small Device Overlay End -->
+    <!-- ===== Main Content Start ===== -->
+        <main>
+    <!-- ===== Header Start ===== -->
+        {% include 'header.html' %}
+    <!-- ===== Header End ===== -->
+        {% block content %} {% endblock content %}
+    <!-- ===== Main Content End ===== -->
+        </main>
+    </div>
+    <!-- ===== Content Area End ===== -->
+</div>
+<!-- ===== Page Wrapper End ===== -->
+{% block extra_js %}{% endblock %}
+<script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script defer src="{% static 'bundle.js' %}"></script>
+
+
 </body>
 </html>
+
+

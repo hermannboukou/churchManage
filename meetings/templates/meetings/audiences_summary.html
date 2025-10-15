@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-4">Résumé de l'Audience</h1>
+
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Catégorie</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Hommes</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ total_men }}</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Femmes</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ total_women }}</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Jeunes</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ total_youth }}</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Enfants</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ total_children }}</td>
+                </tr>
+                <tr class="bg-gray-100">
+                    <td class="px-6 py-4 whitespace-nowrap font-bold">Total Audience</td>
+                    <td class="px-6 py-4 whitespace-nowrap font-bold">{{ total_audience }}</td>
+                </tr>
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Visiteurs</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ total_visitors }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

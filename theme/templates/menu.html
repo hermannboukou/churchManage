@@ -1,134 +1,442 @@
 {% load static tailwind_tags %}
 {% load static %}
 
-<nav class="pc-sidebar">
-    <div class="navbar-wrapper">
-        <div class="m-header flex items-center py-4 px-6 h-header-height">
-            <a class="b-brand flex items-center gap-3" href="{% url 'dashboard' %}">
-                <!-- ========   Change your logo from here   ============ -->
-                <img alt="logo" class="img-fluid logo logo-lg" src="{% static 'css/dist/assets/images/logo-white.svg' %}"/>
-                <img alt="logo" class="img-fluid logo logo-lg" src="{% static 'css/dist/assets/images/logo-white.svg' %}"/>
-                <img alt="logo" class="img-fluid logo logo-sm" src="{% static 'css/dist/assets/images/logo-dark.svg' %}"/>
-                <img alt="logo" class="img-fluid logo logo-sm" src="{% static 'css/dist/assets/images/logo-dark.svg' %}"/>
-                <!-- static/css/dist/assets/images/favicon.svg -->
-            </a>
-        </div>
-        <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
-            <ul class="pc-navbar">
-                <!-- <li class="pc-item pc-caption">
-                    <label>Navigation</label>
-                </li> -->
-                <li class="pc-item">
-                <li class="pc-item">
-                    <a class="pc-link" href="{% url 'dashboard' %}">
-            <span class="pc-micon">
-              <i data-feather="home"></i>
-            </span>
-                        <span class="pc-mtext">Dashboard</span>
-                    </a>
-                </li>
-                <!-- <li class="pc-item pc-caption">
-                    <label>UI Components</label>
-                    <i data-feather="feather"></i>
-                </li> -->
+<aside
+        :class="sidebarToggle ? 'translate-x-0 xl:w-[90px]' : '-translate-x-full'"
+        class="sidebar fixed top-0 left-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 xl:static xl:translate-x-0 dark:border-gray-800 dark:bg-black"
+        @click.outside="sidebarToggle = false"
+>
+    <!-- SIDEBAR HEADER -->
+    <div
+            :class="sidebarToggle ? 'justify-center' : 'justify-between'"
+            class="sidebar-header flex items-center gap-2 pt-8 pb-7"
+    >
+        <a href="{% url 'dashboard' %}">
+      <span class="logo" :class="sidebarToggle ? 'hidden' : ''">
+        <img class="dark:hidden" src="{% static 'src/images/logo/logo.svg' %}" alt="Logo"/>
+        <img
+                class="hidden dark:block"
+                src="{% static 'src/images/logo/logo-dark.svg' %}"
+                alt="Logo"
+        />
+      </span>
 
-                <li class="pc-item pc-hasmenu">
-                    <a class="pc-link" href="#!"><span class="pc-micon"> <i data-feather="activity"></i> </span><span
-                            class="pc-mtext">Statistiques</span><span class="pc-arrow"><i
-                            class="ti ti-chevron-right"></i></span></a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="{% url 'index_audiences' %}">Cumul annuel</a></li>
-                        <li class="pc-item"><a class="pc-link" href="{% url 'liste_audiences' %}">Liste Audiences</a></li>
-                        <li class="pc-item"><a class="pc-link" href="{% url 'audience_statistics' %}">Cumul Graphique</a></li>
-
-
-
-                    </ul>
-                </li>
-
-                 <!-- <li class="pc-item pc-hasmenu">
-                    <a class="pc-link" href="../elements/bc_typography.html">
-                        <span class="pc-micon"> <i data-feather="type"></i></span>
-                        <span class="pc-mtext">Typography</span>
-                    </a>
-                </li>
-                <li class="pc-item pc-hasmenu">
-                    <a class="pc-link" href="../elements/icon-feather.html">
-                        <span class="pc-micon"> <i data-feather="feather"></i></span>
-                        <span class="pc-mtext">Icons</span>
-                    </a>
-                </li>
-
-                <li class="pc-item pc-caption">
-                    <label>Pages</label>
-                    <i data-feather="monitor"></i>
-                </li>
-                <li class="pc-item pc-hasmenu">
-                    <a class="pc-link" href="../pages/login-v1.html" target="_blank">
-                        <span class="pc-micon"> <i data-feather="lock"></i></span>
-                        <span class="pc-mtext">Login</span>
-                    </a>
-                </li>
-                <li class="pc-item pc-hasmenu">
-                    <a class="pc-link" href="../pages/register-v1.html" target="_blank">
-                        <span class="pc-micon"> <i data-feather="user-plus"></i></span>
-                        <span class="pc-mtext">Register</span>
-                    </a>
-                </li>
-                <li class="pc-item pc-caption">
-                    <label>Other</label>
-                    <i data-feather="sidebar"></i>
-                </li>
-                <li class="pc-item pc-hasmenu">
-                    <a class="pc-link" href="#!"><span class="pc-micon"> <i data-feather="align-right"></i> </span><span
-                            class="pc-mtext">Menu levels</span><span class="pc-arrow"><i
-                            class="ti ti-chevron-right"></i></span></a>
-                    <ul class="pc-submenu">
-                        <li class="pc-item"><a class="pc-link" href="#!">Level 2.1</a></li>
-                        <li class="pc-item pc-hasmenu">
-                            <a class="pc-link" href="#!">Level 2.2<span class="pc-arrow"><i
-                                    class="ti ti-chevron-right"></i></span></a>
-                            <ul class="pc-submenu">
-                                <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
-                                <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
-                                <li class="pc-item pc-hasmenu">
-                                    <a class="pc-link" href="#!">Level 3.3<span class="pc-arrow"><i
-                                            class="ti ti-chevron-right"></i></span></a>
-                                    <ul class="pc-submenu">
-                                        <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
-                                        <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="pc-item pc-hasmenu">
-                            <a class="pc-link" href="#!">Level 2.3<span class="pc-arrow"><i
-                                    class="ti ti-chevron-right"></i></span></a>
-                            <ul class="pc-submenu">
-                                <li class="pc-item"><a class="pc-link" href="#!">Level 3.1</a></li>
-                                <li class="pc-item"><a class="pc-link" href="#!">Level 3.2</a></li>
-                                <li class="pc-item pc-hasmenu">
-                                    <a class="pc-link" href="#!">Level 3.3<span class="pc-arrow"><i
-                                            class="ti ti-chevron-right"></i></span></a>
-                                    <ul class="pc-submenu">
-                                        <li class="pc-item"><a class="pc-link" href="#!">Level 4.1</a></li>
-                                        <li class="pc-item"><a class="pc-link" href="#!">Level 4.2</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li> -->
-                <!-- <li class="pc-item">
-                    <a class="pc-link" href="../other/sample-page.html">
-            <span class="pc-micon">
-              <i data-feather="sidebar"></i>
-            </span>
-                        <span class="pc-mtext">Sample page</span>
-                    </a>
-                </li> -->
-            </ul>
-        </div>
+            <img
+                    class="logo-icon"
+                    :class="sidebarToggle ? 'xl:block' : 'hidden'"
+                    src="{% static 'src/images/logo/logo-icon.svg' %}"
+                    alt="Logo"
+            />
+        </a>
     </div>
-</nav>
+    <!-- SIDEBAR HEADER -->
+
+    <div
+            class="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear"
+    >
+        <!-- Sidebar Menu -->
+        <nav x-data="{selected: $persist('Dashboard')}">
+            <!-- Menu Group -->
+            <div>
+                <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
+          <span
+                  class="menu-group-title"
+                  :class="sidebarToggle ? 'xl:hidden' : ''"
+          >
+<!--            MENU-->
+          </span>
+
+                    <svg
+                            :class="sidebarToggle ? 'xl:block hidden' : 'hidden'"
+                            class="menu-group-icon mx-auto fill-current"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z"
+                                fill="currentColor"
+                        />
+                    </svg>
+                </h3>
+
+                <ul class="mb-6 flex flex-col gap-1">
+                    <!-- Menu Item Dashboard -->
+                    <li>
+                        <a
+                                href="{% url 'dashboard' %}"
+                                @click="selected = (selected === 'Dashboard' ? '':'Dashboard')"
+                                class="menu-item group"
+                                :class=" (selected === 'Dashboard') && (page === 'Dashboard') ? 'menu-item-active' : 'menu-item-inactive'"
+                        >
+                            <svg
+                                    :class="(selected === 'Dashboard') && (page === 'Dashboard') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M5.5 3.25C4.25736 3.25 3.25 4.25736 3.25 5.5V8.99998C3.25 10.2426 4.25736 11.25 5.5 11.25H9C10.2426 11.25 11.25 10.2426 11.25 8.99998V5.5C11.25 4.25736 10.2426 3.25 9 3.25H5.5ZM4.75 5.5C4.75 5.08579 5.08579 4.75 5.5 4.75H9C9.41421 4.75 9.75 5.08579 9.75 5.5V8.99998C9.75 9.41419 9.41421 9.74998 9 9.74998H5.5C5.08579 9.74998 4.75 9.41419 4.75 8.99998V5.5ZM5.5 12.75C4.25736 12.75 3.25 13.7574 3.25 15V18.5C3.25 19.7426 4.25736 20.75 5.5 20.75H9C10.2426 20.75 11.25 19.7427 11.25 18.5V15C11.25 13.7574 10.2426 12.75 9 12.75H5.5ZM4.75 15C4.75 14.5858 5.08579 14.25 5.5 14.25H9C9.41421 14.25 9.75 14.5858 9.75 15V18.5C9.75 18.9142 9.41421 19.25 9 19.25H5.5C5.08579 19.25 4.75 18.9142 4.75 18.5V15ZM12.75 5.5C12.75 4.25736 13.7574 3.25 15 3.25H18.5C19.7426 3.25 20.75 4.25736 20.75 5.5V8.99998C20.75 10.2426 19.7426 11.25 18.5 11.25H15C13.7574 11.25 12.75 10.2426 12.75 8.99998V5.5ZM15 4.75C14.5858 4.75 14.25 5.08579 14.25 5.5V8.99998C14.25 9.41419 14.5858 9.74998 15 9.74998H18.5C18.9142 9.74998 19.25 9.41419 19.25 8.99998V5.5C19.25 5.08579 18.9142 4.75 18.5 4.75H15ZM15 12.75C13.7574 12.75 12.75 13.7574 12.75 15V18.5C12.75 19.7426 13.7574 20.75 15 20.75H18.5C19.7426 20.75 20.75 19.7427 20.75 18.5V15C20.75 13.7574 19.7426 12.75 18.5 12.75H15ZM14.25 15C14.25 14.5858 14.5858 14.25 15 14.25H18.5C18.9142 14.25 19.25 14.5858 19.25 15V18.5C19.25 18.9142 18.9142 19.25 18.5 19.25H15C14.5858 19.25 14.25 18.9142 14.25 18.5V15Z"
+                                        fill="currentColor"
+                                />
+                            </svg>
+
+                            <span
+                                    class="menu-item-text"
+                                    :class="sidebarToggle ? 'xl:hidden' : ''"
+                            >
+                Dashboard
+              </span>
+                        </a>
+                    </li>
+                    <!-- Menu Item Dashboard -->
+
+
+                    <!-- Menu Statistiques -->
+                    <li>
+                        <a
+                                href="{% url 'meetings:audiences_list' %}"
+                                @click.prevent="selected = (selected === 'meetings' ? '':'meetings')"
+                                class="menu-item group"
+                                :class=" (selected === 'meetings') || (page === 'meetings'  || page === 'imageGenerator' || page === 'codeGenerator' || page === 'videoGenerator') ? 'menu-item-active' : 'menu-item-inactive'"
+                        >
+                            <svg
+                                    :class="(selected === 'meetings') || (page === 'meetings' || page === 'textGenerator') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        d="M18.75 2.42969V7.70424M9.42261 13.673C10.0259 14.4307 10.9562 14.9164 12 14.9164C13.0438 14.9164 13.9742 14.4307 14.5775 13.673M20 12V18.5C20 19.3284 19.3284 20 18.5 20H5.5C4.67157 20 4 19.3284 4 18.5V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                                <path
+                                        d="M18.75 2.42969V2.43969M9.50391 9.875L9.50391 9.885M14.4961 9.875V9.885"
+                                        stroke="currentColor"
+                                        stroke-width="2.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                            </svg>
+
+                            <span
+                                    class="menu-item-text"
+                                    :class="sidebarToggle ? 'xl:hidden' : ''"
+                            >
+                Administration de Meetings
+              </span>
+
+                            <span
+                                    :class="sidebarToggle ? 'xl:hidden' : ''"
+                                    class="absolute right-10 flex items-center gap-1"
+                            >
+
+              </span>
+
+                            <svg
+                                    class="menu-item-arrow"
+                                    :class="[(selected === 'meetings') ? 'menu-item-arrow-active' : 'menu-item-arrow-inactive', sidebarToggle ? 'xl:hidden' : '' ]"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                            </svg>
+                        </a>
+
+                        <!-- Dropdown Menu Start -->
+                        <div
+                                class="translate transform overflow-hidden"
+                                :class="(selected === 'meetings') ? 'block' :'hidden'"
+                        >
+                            <ul
+                                    :class="sidebarToggle ? 'xl:hidden' : 'flex'"
+                                    class="menu-dropdown mt-2 flex flex-col gap-1 pl-9"
+                            >
+                                <li>
+                                    <a
+                                            href="{% url 'meetings:audiences_list' %}"
+                                            class="menu-dropdown-item group"
+                                            :class="page === 'meetings' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                    >
+                                        Liste Audiences
+                                    </a>
+                                </li>
+                                <li>
+                                                                            <a
+                                                                                    href="{% url 'meetings:audiences_summary' %}"
+                                                                                    class="menu-dropdown-item group"
+                                                                                    :class="page === 'imageGenerator' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                                                            >
+                                                                                Résumé des audiences
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a
+                                                                                    href="{% url 'meetings:audience_report' %}"
+                                                                                    class="menu-dropdown-item group"
+                                                                                    :class="page === 'report' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                                                            >
+                                                                                Rapport des audiences
+                                                                            </a>
+                                                                        </li>                                <li>
+                                    <a
+                                            href="{% url 'meetings:meeting_list' %}"
+                                            class="menu-dropdown-item group"
+                                            :class="page === 'meetings' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                    >
+                                        Gérer les réunions
+                                    </a>
+                                </li>
+                                <li>
+                                                                            <a
+                                                                                    href="{% url 'meetings:event_list' %}"
+                                                                                    class="menu-dropdown-item group"
+                                                                                    :class="page === 'events' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                                                            >
+                                                                                Gérer les événements
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a
+                                                                                    href="{% url 'meetings:attendance_list' %}"
+                                                                                    class="menu-dropdown-item group"
+                                                                                    :class="page === 'attendances' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                                                            >
+                                                                                Gérer les présences
+                                                                            </a>
+                                                                        </li>                            </ul>
+                        </div>
+                        <!-- Dropdown Menu End -->
+                    </li>
+                    <!-- Menu Statistiques -->
+
+
+                </ul>
+            </div>
+
+            <!-- Support Group -->
+            <div>
+                <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
+          <span
+                  class="menu-group-title"
+                  :class="sidebarToggle ? 'xl:hidden' : ''"
+          >
+            Support
+          </span>
+
+                    <svg
+                            :class="sidebarToggle ? 'xl:block hidden' : 'hidden'"
+                            class="menu-group-icon mx-auto fill-current"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z"
+                                fill="currentColor"
+                        />
+                    </svg>
+                </h3>
+
+                <ul class="mb-6 flex flex-col gap-1">
+                    <!-- Menu Item Chat -->
+                    <li>
+                        <a
+                                href=""
+                                @click="selected = (selected === 'Chat' ? '':'Chat')"
+                                class="menu-item group"
+                                :class=" (selected === 'Chat') && (page === 'chat') ? 'menu-item-active' : 'menu-item-inactive'"
+                        >
+                            <svg
+                                    :class="(selected === 'Chat') && (page === 'chat') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M4.00002 12.0957C4.00002 7.67742 7.58174 4.0957 12 4.0957C16.4183 4.0957 20 7.67742 20 12.0957C20 16.514 16.4183 20.0957 12 20.0957H5.06068L6.34317 18.8132C6.48382 18.6726 6.56284 18.4818 6.56284 18.2829C6.56284 18.084 6.48382 17.8932 6.34317 17.7526C4.89463 16.304 4.00002 14.305 4.00002 12.0957ZM12 2.5957C6.75332 2.5957 2.50002 6.849 2.50002 12.0957C2.50002 14.4488 3.35633 16.603 4.77303 18.262L2.71969 20.3154C2.50519 20.5299 2.44103 20.8525 2.55711 21.1327C2.6732 21.413 2.94668 21.5957 3.25002 21.5957H12C17.2467 21.5957 21.5 17.3424 21.5 12.0957C21.5 6.849 17.2467 2.5957 12 2.5957ZM7.62502 10.8467C6.93467 10.8467 6.37502 11.4063 6.37502 12.0967C6.37502 12.787 6.93467 13.3467 7.62502 13.3467H7.62512C8.31548 13.3467 8.87512 12.787 8.87512 12.0967C8.87512 11.4063 8.31548 10.8467 7.62512 10.8467H7.62502ZM10.75 12.0967C10.75 11.4063 11.3097 10.8467 12 10.8467H12.0001C12.6905 10.8467 13.2501 11.4063 13.2501 12.0967C13.2501 12.787 12.6905 13.3467 12.0001 13.3467H12C11.3097 13.3467 10.75 12.787 10.75 12.0967ZM16.375 10.8467C15.6847 10.8467 15.125 11.4063 15.125 12.0967C15.125 12.787 15.6847 13.3467 16.375 13.3467H16.3751C17.0655 13.3467 17.6251 12.787 17.6251 12.0967C17.6251 11.4063 17.0655 10.8467 16.3751 10.8467H16.375Z"
+                                        fill="currentColor"
+                                />
+                            </svg>
+
+                            <span
+                                    class="menu-item-text"
+                                    :class="sidebarToggle ? 'xl:hidden' : ''"
+                            >
+                Chat
+              </span>
+                        </a>
+                    </li>
+                    <!-- Menu Item Chat -->
+                </ul>
+            </div>
+
+            <!-- Others Group -->
+            <div>
+                <h3 class="mb-4 text-xs leading-[20px] text-gray-400 uppercase">
+          <span
+                  class="menu-group-title"
+                  :class="sidebarToggle ? 'xl:hidden' : ''"
+          >
+            others
+          </span>
+
+                    <svg
+                            :class="sidebarToggle ? 'xl:block hidden' : 'hidden'"
+                            class="menu-group-icon mx-auto fill-current"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M5.99915 10.2451C6.96564 10.2451 7.74915 11.0286 7.74915 11.9951V12.0051C7.74915 12.9716 6.96564 13.7551 5.99915 13.7551C5.03265 13.7551 4.24915 12.9716 4.24915 12.0051V11.9951C4.24915 11.0286 5.03265 10.2451 5.99915 10.2451ZM17.9991 10.2451C18.9656 10.2451 19.7491 11.0286 19.7491 11.9951V12.0051C19.7491 12.9716 18.9656 13.7551 17.9991 13.7551C17.0326 13.7551 16.2491 12.9716 16.2491 12.0051V11.9951C16.2491 11.0286 17.0326 10.2451 17.9991 10.2451ZM13.7491 11.9951C13.7491 11.0286 12.9656 10.2451 11.9991 10.2451C11.0326 10.2451 10.2491 11.0286 10.2491 11.9951V12.0051C10.2491 12.9716 11.0326 13.7551 11.9991 13.7551C12.9656 13.7551 13.7491 12.9716 13.7491 12.0051V11.9951Z"
+                                fill="currentColor"
+                        />
+                    </svg>
+                </h3>
+
+                <ul class="mb-6 flex flex-col gap-1">
+
+                    <!-- Menu Item Authentication -->
+                    <li>
+                        <a
+                                href="{% url 'dashboard' %}"
+                                @click.prevent="selected = (selected === 'Authentication' ? '':'Authentication')"
+                                class="menu-item group"
+                                :class="(selected === 'Authentication') || (page === 'basicChart' || page === 'advancedChart') ? 'menu-item-active' : 'menu-item-inactive'"
+                        >
+                            <svg
+                                    :class="(selected === 'Authentication') || (page === 'basicChart' || page === 'advancedChart') ? 'menu-item-icon-active'  :'menu-item-icon-inactive'"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
+                                        d="M14 2.75C14 2.33579 14.3358 2 14.75 2C15.1642 2 15.5 2.33579 15.5 2.75V5.73291L17.75 5.73291H19C19.4142 5.73291 19.75 6.0687 19.75 6.48291C19.75 6.89712 19.4142 7.23291 19 7.23291H18.5L18.5 12.2329C18.5 15.5691 15.9866 18.3183 12.75 18.6901V21.25C12.75 21.6642 12.4142 22 12 22C11.5858 22 11.25 21.6642 11.25 21.25V18.6901C8.01342 18.3183 5.5 15.5691 5.5 12.2329L5.5 7.23291H5C4.58579 7.23291 4.25 6.89712 4.25 6.48291C4.25 6.0687 4.58579 5.73291 5 5.73291L6.25 5.73291L8.5 5.73291L8.5 2.75C8.5 2.33579 8.83579 2 9.25 2C9.66421 2 10 2.33579 10 2.75L10 5.73291L14 5.73291V2.75ZM7 7.23291L7 12.2329C7 14.9943 9.23858 17.2329 12 17.2329C14.7614 17.2329 17 14.9943 17 12.2329L17 7.23291L7 7.23291Z"
+                                        fill="currentColor"
+                                />
+                            </svg>
+
+                            <span
+                                    class="menu-item-text"
+                                    :class="sidebarToggle ? 'xl:hidden' : ''"
+                            >
+                Authentication
+              </span>
+
+                            <svg
+                                    class="menu-item-arrow absolute top-1/2 right-2.5 -translate-y-1/2 stroke-current"
+                                    :class="[(selected === 'Authentication') ? 'menu-item-arrow-active' : 'menu-item-arrow-inactive', sidebarToggle ? 'xl:hidden' : '' ]"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 20 20"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                        d="M4.79175 7.39584L10.0001 12.6042L15.2084 7.39585"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                />
+                            </svg>
+                        </a>
+
+                        <!-- Dropdown Menu Start -->
+                        <div
+                                class="translate transform overflow-hidden"
+                                :class="(selected === 'Authentication') ? 'block' :'hidden'"
+                        >
+                            <ul
+                                    :class="sidebarToggle ? 'lg:hidden' : 'flex'"
+                                    class="menu-dropdown mt-2 flex flex-col gap-1 pl-9"
+                            >
+                                <li>
+                                    <a
+                                            href="signin.html"
+                                            class="menu-dropdown-item group"
+                                            :class="page === 'signin' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                    >
+                                        Sign In
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                            href="signup.html"
+                                            class="menu-dropdown-item group"
+                                            :class="page === 'signup' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                    >
+                                        Sign Up
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                            href="reset-password.html"
+                                            class="menu-dropdown-item group"
+                                            :class="page === 'resetPassword' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                    >
+                                        Reset Password
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                            href="two-step-verification.html"
+                                            class="menu-dropdown-item group"
+                                            :class="page === 'twoStepVerification' ? 'menu-dropdown-item-active' : 'menu-dropdown-item-inactive'"
+                                    >
+                                        Two Step Verification
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown Menu End -->
+                    </li>
+                    <!-- Menu Item Authentication -->
+                </ul>
+            </div>
+        </nav>
+        <!-- Sidebar Menu -->
+
+
+    </div>
+</aside>
 
