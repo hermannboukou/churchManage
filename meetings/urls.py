@@ -12,6 +12,7 @@ urlpatterns = [
     path('summary/', views.audiences_summary, name='audiences_summary'),
 
     path('report/', views.audience_report, name='audience_report'),
+    path('graphe/', views.graphique_annuel, name='graphique_annuel'),
 
     path('audiences/new/', views.AudienceCreateView.as_view(), name='audience_create'),
 

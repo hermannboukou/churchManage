@@ -28,6 +28,7 @@
 {% block content %}
 
 
+
 {% load static i18n %}
 <div class="mx-auto max-w-(--breakpoint-2xl) p-4 pb-20 md:p-6 md:pb-6">
     <!-- Breadcrumb Start -->
@@ -99,13 +100,14 @@
 
 <div class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
     <div class="container mx-auto px-4 py-8">
-        <!-- Filtres -->
-        <form method="get" id="filter-form" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8 no-print">
+
+        <!-- Filtres id="filter-form" -->
+        <form method="get" class="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-8 no-print">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <!-- Église -->
                 <div>
                     <label class="block text-sm font-medium mb-2">{% trans "Église" %}</label>
-                    <select name="church" class="w-full p-2 border rounded bg-white dark:bg-gray-700">
+                    <select name="church" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
                         <option value="">{% trans "Toutes les églises" %}</option>
                         {% for church in churches %}
                         <option value="{{ church.id }}" {% if selected_church == church.id %}selected{% endif %}>
@@ -118,7 +120,7 @@
                 <!-- Réunion -->
                 <div>
                     <label class="block text-sm font-medium mb-2">{% trans "Réunion" %}</label>
-                    <select name="meeting" class="w-full p-2 border rounded bg-white dark:bg-gray-700">
+                    <select name="meeting" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
                         <option value="">{% trans "Toutes les réunions" %}</option>
                         {% for meeting in meetings %}
                         <option value="{{ meeting.id }}" {% if selected_meeting == meeting.id %}selected{% endif %}>
@@ -131,7 +133,7 @@
                 <!-- Mois -->
                 <div>
                     <label class="block text-sm font-medium mb-2">{% trans "Mois" %}</label>
-                    <select name="month" class="w-full p-2 border rounded bg-white dark:bg-gray-700">
+                    <select name="month" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
                         {% for value, name in months %}
                         <option value="{{ value }}" {% if selected_month == value %}selected{% endif %}>
                             {{ name }}
@@ -143,7 +145,7 @@
                 <!-- Année -->
                 <div>
                     <label class="block text-sm font-medium mb-2">{% trans "Année" %}</label>
-                    <select name="year" class="w-full p-2 border rounded bg-white dark:bg-gray-700">
+                    <select name="year" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
                         {% for year in years %}
                         <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>
                             {{ year }}
@@ -158,8 +160,8 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden printable">
             <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                 <thead class="bg-gray-100 dark:bg-gray-700">
-                     <tr>
-                        <th colspan="6" class="px-6 py-3 text-center text-2xl font-bold uppercase tracking-wider">
+                    <tr>
+                        <th colspan="6" class="px-6 py-3 text-2xl font-medium text-center uppercase tracking-wider">
                             {% trans "Rapport d'Audiences" %}  {% trans "ADG MAISON DU POTIER" %}
                         </th>
                     </tr>
@@ -173,15 +175,10 @@
                         <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider font-bold">{% trans "Total" %}</th>
                     </tr>
                 </thead>
-
-
-            <!--grid grid-cols-12 border-t border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900  -->
-
-
-                <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
                     {% for day in daily_data %}
-                    <tr class="border-gray-100 border-y bg-gray-50 dark:border-gray-800 dark:bg-gray-900">   <!---->
-                        <td class="px-6 py-4 whitespace-nowrap">{{ day.formatted_date|title }}</td>
+                    <tr class="hover:bg-gray-50 dark:hover:text-gray-400">   <!---->
+                        <td class="px-6 py-4 whitespace-nowrap">{{ day.formatted_date }}</td>
                         <td class="px-6 py-4 text-blue-800 dark:text-blue-400">{{ day.total_men|default:0 }}</td>
                         <td class="px-6 py-4 text-purple-800 dark:text-purple-400">{{ day.total_women|default:0 }}</td>
                         <td class="px-6 py-4 text-green-800 dark:text-green-400">{{ day.total_youth|default:0 }}</td>
@@ -197,27 +194,27 @@
 
                     <!-- Ligne des totaux total-row-->
                     {% if daily_data %}
-                    <tr class="bg-sky/[0.03] dark:hover:bg-sky/[0.03] dark:bg-sky-500 text-blue-800 dark:text-blue-50 dark:border-gray-800">
-                        <td class="px-6 py-4 font-bold">{% trans "TOTAUX" %}</td>
-                        <td class="px-6 py-4 font-bold">{{ total_men }}</td>
-                        <td class="px-6 py-4 font-bold">{{ total_women }}</td>
-                        <td class="px-6 py-4 font-bold">{{ total_youth }}</td>
-                        <td class="px-6 py-4 font-bold">{{ total_children }}</td>
+                    <tr class="bg-gray-50 dark:bg-blue-500">
+                        <td class="px-6 py-4 font-bold text-blue-800 dark:text-blue-50">{% trans "TOTAUX" %}</td>
+                        <td class="px-6 py-4 font-bold text-blue-800 dark:text-blue-50">{{ total_men }}</td>
+                        <td class="px-6 py-4 font-bold text-blue-800 dark:text-blue-50">{{ total_women }}</td>
+                        <td class="px-6 py-4 font-bold text-blue-800 dark:text-blue-50">{{ total_youth }}</td>
+                        <td class="px-6 py-4 font-bold text-blue-800 dark:text-blue-50">{{ total_children }}</td>
 <!--                        <td class="px-6 py-4 font-bold text-gray-600 dark:text-blue-50">{{ total_visitors }}</td> -->
-                        <td class="px-6 py-4 font-bold text-red-600 dark:text-gray-100">{{ total_audience }}</td>
+                        <td class="px-6 py-4 font-bold text-red-600 dark:text-red-200">{{ total_audience }}</td>
                     </tr>
                     {% endif %}
 
                                     <!-- Ligne des MOYENNE dark:bg-lime-500 bg-gray-50 -->
                     {% if daily_data %}
-                    <tr class="bg-white/[0.03] dark:hover:bg-white/[0.03] dark:bg-lime-500 text-lime-700 dark:text-lime-50 dark:border-gray-800">
-                        <td class="px-6 py-4 font-bold">{% trans "MOYENNES" %}</td>
-                        <td class="px-6 py-4 font-bold">{{ avg_men|floatformat:"0" }}</td>
-                        <td class="px-6 py-4 font-bold">{{ avg_women|floatformat:"0"}}</td>
-                        <td class="px-6 py-4 font-bold">{{ avg_youth|floatformat:"0"}}</td>
-                        <td class="px-6 py-4 font-bold">{{ avg_children|floatformat:"0"}}</td>
+                    <tr class="bg-gray-50 dark:hover:bg-white/[0.03] dark:bg-lime-500">
+                        <td class="px-6 py-4 font-bold text-lime-700 dark:text-lime-50">{% trans "MOYENNES" %}</td>
+                        <td class="px-6 py-4 font-bold text-lime-700 dark:text-lime-50">{{ avg_men|floatformat:"0" }}</td>
+                        <td class="px-6 py-4 font-bold text-lime-700 dark:text-lime-50">{{ avg_women|floatformat:"0"}}</td>
+                        <td class="px-6 py-4 font-bold text-lime-700 dark:text-lime-50">{{ avg_youth|floatformat:"0"}}</td>
+                        <td class="px-6 py-4 font-bold text-lime-700 dark:text-lime-50">{{ avg_children|floatformat:"0"}}</td>
 <!--                        <td class="px-6 py-4 font-bold text-lime-700 dark:text-blue-50">{{ avg_visitors|floatformat:"0" }}</td> -->
-                        <td class="px-6 py-4 font-bold text-red-600 dark:text-gray-100">{{ avg_total|floatformat:"0"}}</td>
+                        <td class="px-6 py-4 font-bold text-red-600 dark:text-red-100">{{ avg_total|floatformat:"0"}}</td>
                     </tr>
                     {% endif %}
                 </tbody>
@@ -226,66 +223,84 @@
 
         <!-- Bouton d'impression -->
         <div class="mt-6 flex justify-end no-print">
-            <button onclick="window.print()" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded flex items-center">
+
+            <a href="{% url 'meetings:graphique_annuel' %}" type="button" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C11.5858 2 11.25 2.33579 11.25 2.75V12C11.25 12.4142 11.5858 12.75 12 12.75H21.25C21.6642 12.75 22 12.4142 22 12C22 6.47715 17.5228 2 12 2ZM12.75 11.25V3.53263C13.2645 3.57761 13.7659 3.66843 14.25 3.80098V3.80099C15.6929 4.19606 16.9827 4.96184 18.0104 5.98959C19.0382 7.01734 19.8039 8.30707 20.199 9.75C20.3316 10.2341 20.4224 10.7355 20.4674 11.25H12.75ZM2 12C2 7.25083 5.31065 3.27489 9.75 2.25415V3.80099C6.14748 4.78734 3.5 8.0845 3.5 12C3.5 16.6944 7.30558 20.5 12 20.5C15.9155 20.5 19.2127 17.8525 20.199 14.25H21.7459C20.7251 18.6894 16.7492 22 12 22C6.47715 22 2 17.5229 2 12Z" fill="currentColor"></path>
+              </svg>
+                {% trans "Afficher le graphique" %}
+            </a>
+            <button onclick="window.print()" class="ml-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 00-2 2v3a2 2 0 002 2h1v2a2 2 0 002 2h6a2 2 0 002-2v-2h1a2 2 0 002-2V9a2 2 0 00-2-2h-1V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm8 0H7v3h6V4zm0 8H7v4h6v-4z" clip-rule="evenodd" />
                 </svg>
                 {% trans "Imprimer le rapport" %}
             </button>
         </div>
-
-
-
-         <!-- Chart                                                                                                                       │
-          <div class="mt-8">                                                                                                                    │
-            <canvas id="audienceChart"></canvas>                                                                                              │
-          </div>
--->
     </div>
 </div>
 
 
 {% endblock %}
 {% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const meetingSelect = document.getElementById('meeting');
+        const churchSelect = document.getElementById('church');
+        const filterForm = document.getElementById('filter-form');
+
+        meetingSelect.addEventListener('change', function() {
+            filterForm.submit();
+        });
+
+        churchSelect.addEventListener('change', function() {
+            filterForm.submit();
+        });
+    });
+</script>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('filter-form');
-            const selects = form.querySelectorAll('select');
-
-            selects.forEach(select => {
-                select.addEventListener('change', function() {
-                    form.submit();
+            // Soumission automatique du formulaire au changement
+            const form = document.querySelector('form[method="get"]');
+            if (form) {
+                const selects = form.querySelectorAll('select');
+                selects.forEach(select => {
+                    select.addEventListener('change', function() {
+                        form.submit();
+                    });
                 });
+            }
+            // Affichage du graphique
+            const ctx = document.getElementById('audienceChart').getContext('2d');
+            const chartData = JSON.parse('{{ chart_data|escapejs }}');
+            new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: true, text: 'Fréquence des audiences par mois' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    },
+                    // Augmenter l'épaisseur des barres
+                    datasets: {
+                        bar: {
+                            barThickness: 40, // Ajuste l'épaisseur ici (20-50 recommandé)
+                            maxBarThickness: 60
+                        }
+                    }
+                }
             });
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>                                                                                 │
-     <script>                                                                                                                                      │
-         document.addEventListener('DOMContentLoaded', function() {                                                                                │
-             const form = document.getElementById('filter-form');                                                                                  │
-             const selects = form.querySelectorAll('select');                                                                                      │
-                                                                                                                                                    │
-             selects.forEach(select => {                                                                                                           │
-                  select.addEventListener('change', function() {                                                                                    │
-                      form.submit();
-             });                                                                                                                               │
-              });                                                                                                                                   │
-                                                                                                                                                     │
-              const ctx = document.getElementById('audienceChart').getContext('2d');                                                                │
-              const chartData = JSON.parse({{ chart_data|safe }});                                                                                  │
-                                                                                                                                                    │
-              new Chart(ctx, {                                                                                                                      │
-                  type: 'bar',                                                                                                                      │
-                  data: chartData,                                                                                                                  │
-                  options: {                                                                                                                        │
-                      scales: {                                                                                                                     │
-                          y: {                                                                                                                      │
-                              beginAtZero: true                                                                                                     │
-                         }                                                                                                                         │
-                      }                                                                                                                             │
-                  }                                                                                                                                 │
-              });                                                                                                                                   │
-          });                                                                                                                                       │
-     </script>
 {% endblock %}
 
