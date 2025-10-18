@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    <div class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6 transition-colors duration-300">
+ 
+        <!-- Header with theme toggle -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-blue-700 dark:text-blue-400">📊 Statistiques des Audiences</h1>
+        </div>
+
+
+        <!-- Filtres -->
+         <div class="mb-2 rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+            <div class="space-y-6 border-t border-gray-100 p-5 sm:p-6 dark:border-gray-800">
+                <h2 class="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-300">Filtres</h2>
+                <form method="get" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label for="church" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Église</label>
+                        <select id="church" name="church" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
+                            <option value="">Toutes les églises</option>
+                            {% for church in churches %}
+                                <option value="{{ church.id }}" {% if selected_church and selected_church.id == church.id %}selected{% endif %}>
+                                    {{ church.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="meeting" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Réunion</label>
+                        <select id="meeting" name="meeting" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
+                            <option value="">Toutes les réunions</option>
+                            {% for meeting in meetings %}
+                                <option value="{{ meeting.id }}" {% if selected_meeting and selected_meeting.id == meeting.id %}selected{% endif %}>
+                                    {{ meeting.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="month" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Mois</label>
+                        <select id="month" name="month" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
+                            {% for month_num, month_name in months %}
+                                <option value="{{ month_num }}" {% if month_num == selected_month %}selected{% endif %}>
+                                    {{ month_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="year" class="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">Année</label>
+                        
+                        <select name="year" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
+                            {% for year in years %}
+                                <option value="{{ year }}" {% if selected_year == year %}selected{% endif %}>
+                                    {{ year }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="flex items-end">
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md w-full transition-colors duration-300">
+                            Appliquer
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Résultats -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <!-- Cumul Mensuel -->
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 shadow-lg transition-colors duration-300">
+                <h2 class="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-300">Cumul Mensuel</h2>
+
+                <div class="space-y-4">
+                    {% include 'meetings/_stats_card.html' with totals=monthly_totals percentages=monthly_percentages_global global_total_value=monthlyV_global_total %}
+                </div>
+            </div>
+
+            <!-- Cumul Annuel -->
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-6 shadow-lg transition-colors duration-300">
+                <h2 class="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-300">Cumul Annuel</h2>
+
+                <div class="space-y-4">
+                    {% include 'meetings/_stats_card.html' with totals=annual_totals percentages=annual_percentages_global global_total_value=annualV_global_total %}
+                </div>
+            </div>
+        </div>
+
+
+                <!-- Bouton d'impression -->
+        <div class="mt-6 flex justify-end no-print">
+
+            <a href="{% url 'meetings:graphique_annuel' %}" type="button" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2 rounded flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C11.5858 2 11.25 2.33579 11.25 2.75V12C11.25 12.4142 11.5858 12.75 12 12.75H21.25C21.6642 12.75 22 12.4142 22 12C22 6.47715 17.5228 2 12 2ZM12.75 11.25V3.53263C13.2645 3.57761 13.7659 3.66843 14.25 3.80098V3.80099C15.6929 4.19606 16.9827 4.96184 18.0104 5.98959C19.0382 7.01734 19.8039 8.30707 20.199 9.75C20.3316 10.2341 20.4224 10.7355 20.4674 11.25H12.75ZM2 12C2 7.25083 5.31065 3.27489 9.75 2.25415V3.80099C6.14748 4.78734 3.5 8.0845 3.5 12C3.5 16.6944 7.30558 20.5 12 20.5C15.9155 20.5 19.2127 17.8525 20.199 14.25H21.7459C20.7251 18.6894 16.7492 22 12 22C6.47715 22 2 17.5229 2 12Z" fill="currentColor"></path>
+              </svg>
+                {% trans "Afficher le graphique" %}
+            </a>
+        </div>
+
+    </div>
+
+   
+{% endblock %}
+{% block extra_js %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const meetingSelect = document.getElementById('meeting');
+            const churchSelect = document.getElementById('church');
+            const filterForm = document.getElementById('filter-form');
+
+            meetingSelect.addEventListener('change', function() {
+                filterForm.submit();
+            });
+
+            churchSelect.addEventListener('change', function() {
+                filterForm.submit();
+            });
+        });
+    </script>
+{% endblock %}

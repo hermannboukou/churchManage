@@ -9,9 +9,11 @@ urlpatterns = [
 
     path('', views.audiences_list, name='audiences_list'),
 
-    path('summary/', views.audiences_summary, name='audiences_summary'),
+    path('summary-2/', views.audiences_summary, name='audiences_summary'),
+    path('summary/', views.cumuls_audience, name='cumuls_audience'),
 
     path('report/', views.audience_report, name='audience_report'),
+
     path('graphe/', views.graphique_annuel, name='graphique_annuel'),
 
     path('audiences/new/', views.AudienceCreateView.as_view(), name='audience_create'),

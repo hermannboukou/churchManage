@@ -1,0 +1,48 @@
+{% load custom_filters %}
+
+
+<div class="bold text-gray-500 dark:text-gray-400 mt-1">
+    Total global: {{ global_total_value }}
+</div>
+<div>
+    <div class="flex justify-between mb-1">
+        <span class="font-medium text-blue-600 dark:text-blue-300">Hommes</span>
+        <span class="font-mono text-blue-600 dark:text-blue-300">{{ totals.total_men|default:0 }} ({{ percentages.total_men|floatformat:1 }}%)</span>
+    </div>
+    <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5 transition-colors duration-300">
+        <div class="bg-linear-to-r from-blue-300 to-blue-600 ring-1 ring-blue-950/10 ring-inset dark:from-blue-500 dark:ring-white/10 h-2.5 rounded-full" style="width: {{ percentages.total_men|english_float:1 }}%"></div>
+    </div>
+</div>
+
+<div>
+    <div class="flex justify-between mb-1">
+        <span class="font-medium text-purple-600 dark:text-purple-300">Femmes</span>
+        <span class="font-mono text-purple-600 dark:text-purple-300">{{ totals.total_women|default:0 }} ({{ percentages.total_women|floatformat:1 }}%)</span>
+    </div>
+    <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5 transition-colors duration-300">
+        <div class="bg-linear-to-r from-purple-300 to-purple-600 ring-1 ring-purple-950/10 ring-inset dark:from-purple-500 dark:ring-white/10 h-2.5 rounded-full" style="width: {{ percentages.total_women|english_float:1 }}%"></div>
+    </div>
+</div>
+
+<div>
+    <div class="flex justify-between mb-1">
+        <span class="font-medium text-green-600  dark:text-green-300">Jeunes</span>
+        <span class="font-mono text-green-600  dark:text-green-300">{{ totals.total_youth|default:0 }} ({{ percentages.total_youth|floatformat:1 }}%)</span>
+    </div>
+    <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5 transition-colors duration-300">
+        <div class="bg-linear-to-r from-green-300 to-green-600 ring-1 ring-green-950/10 ring-inset dark:from-green-500 dark:ring-white/10 h-2.5 rounded-full" style="width: {{ percentages.total_youth|english_float:1 }}%"></div>
+    </div>
+</div>
+
+<div>
+    <div class="flex justify-between mb-1">
+        <span class="font-medium text-yellow-600 dark:text-yellow-300">Enfants</span>
+        <span class="font-mono text-yellow-600 dark:text-yellow-300">{{ totals.total_children|default:0 }} ({{ percentages.total_children|floatformat:1 }}%)</span>
+    </div>
+    <div class="w-full bg-gray-300 dark:bg-gray-700 rounded-full h-2.5 transition-colors duration-300">
+        <div class="bg-linear-to-r from-yellow-300 to-yellow-600 ring-1 ring-yellow-950/10 ring-inset dark:from-yellow-500 dark:ring-white/10 h-2.5 rounded-full" style="width: {{ percentages.total_children|english_float:1 }}%"></div>
+    </div>
+</div>
+
+
+

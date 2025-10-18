@@ -25,5 +25,11 @@ def get_item(dictionary, key):
 def sum_attr(queryset, attr):
     return sum(getattr(item, attr, 0) for item in queryset)
 
-
+# Dans votre fichier templatetags/custom_filters.py
+@register.filter
+def english_float(value, decimals=2):
+    try:
+        return f"{float(value):.{decimals}f}"
+    except (ValueError, TypeError):
+        return value
 

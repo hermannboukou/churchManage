@@ -13,7 +13,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils import timezone
 from django.db.models import Sum, Q
-from datetime import datetime
+from datetime import datetime, date
 from django.utils.translation import gettext as _
 from .forms import MeetingForm, EventForm, AudienceForm, AttendanceForm
 from meetings.models import Meeting, Audiences, Event, Attendance
@@ -207,7 +207,7 @@ def audiences_summary(request):
     # Rendre le template avec les données
     return render(request, 'meetings/audiences_summary.html', context)
 
-
+@login_required
 def graphique_annuel(request):
     # Récupérer tous les filtres possibles
     meetings = Meeting.objects.all()
@@ -358,6 +358,7 @@ def graphique_annuel(request):
 
     return render(request, 'meetings/graphique_annuel.html', context)
 
+@login_required
 def audience_report(request):
     # Récupérer tous les filtres possibles
     churches = Church.objects.all()
@@ -525,3 +526,123 @@ def audience_report(request):
         'church_filter': church_filter,
         'page_obj': paginated_dates  # pour la pagination dans le template
     })
+
+
+@login_required
+def cumuls_audience(request):
+    churches = Church.objects.all()
+    meetings = Meeting.objects.all()
+    current_year = timezone.now().year
+    current_month = timezone.now().month
+    selected_church = None
+    selected_meeting = None
+
+    year = int(request.GET.get('year', current_year))
+    month = int(request.GET.get('month', current_month))
+    church_id = request.GET.get('church')
+    meeting_id = request.GET.get('meeting')
+
+    if church_id:
+        selected_church = Church.objects.get(id=church_id)
+    if meeting_id:
+        selected_meeting = Meeting.objects.get(id=meeting_id)
+
+    # Filtrer les audiences
+    audiences = Audiences.objects.filter(day__year=year)
+    if month:
+        audiences = audiences.filter(day__month=month)
+    if selected_church:
+        audiences = audiences.filter(church=selected_church)
+    if selected_meeting:
+        audiences = audiences.filter(meeting=selected_meeting)
+
+    # Calcul des cumuls mensuels
+    monthly_totals = audiences.aggregate(
+        total_men=Sum('men_count'),
+        total_women=Sum('women_count'),
+        total_youth=Sum('youth_count'),
+        total_children=Sum('children_count'),
+        total_visitors=Sum('visitors_count')
+    )
+
+    # Calcul des cumuls mensuels sans visiteurs
+    monthlyV_totals = audiences.aggregate(
+        total_men=Sum('men_count'),
+        total_women=Sum('women_count'),
+        total_youth=Sum('youth_count'),
+        total_children=Sum('children_count')
+    )
+
+    # Calcul du total global mensuel
+    monthly_global_total = sum(v for v in monthly_totals.values() if v) or 1
+    monthlyV_global_total = sum(v for v in monthlyV_totals.values() if v) or 1
+
+    # Calcul des pourcentages par rapport au total global
+    monthly_percentages_global = {
+        'total_men': (monthly_totals['total_men'] or 0) / monthly_global_total * 100,
+        'total_women': (monthly_totals['total_women'] or 0) / monthly_global_total * 100,
+        'total_youth': (monthly_totals['total_youth'] or 0) / monthly_global_total * 100,
+        'total_children': (monthly_totals['total_children'] or 0) / monthly_global_total * 100,
+        'total_visitors': (monthly_totals['total_visitors'] or 0) / monthly_global_total * 100,
+    }
+
+    # Calcul des cumuls annuels
+    annual_audiences = Audiences.objects.filter(day__year=year)
+    if selected_church:
+        annual_audiences = annual_audiences.filter(church=selected_church)
+    if selected_meeting:
+        annual_audiences = annual_audiences.filter(meeting=selected_meeting)
+
+    # Calcul des cumuls annuels 
+    annual_totals = annual_audiences.aggregate(
+        total_men=Sum('men_count'),
+        total_women=Sum('women_count'),
+        total_youth=Sum('youth_count'),
+        total_children=Sum('children_count'),
+        total_visitors=Sum('visitors_count')
+    )
+    # Calcul des cumuls annuels sans visiteurs
+    annualV_totals = annual_audiences.aggregate(
+        total_men=Sum('men_count'),
+        total_women=Sum('women_count'),
+        total_youth=Sum('youth_count'),
+        total_children=Sum('children_count')
+    )
+
+    # Calcul du total global annuel
+    annual_global_total = sum(v for v in annual_totals.values() if v) or 1
+    annualV_global_total = sum(v for v in annualV_totals.values() if v) or 1
+
+    # Calcul des pourcentages par rapport au total global annuel
+    annual_percentages_global = {
+        'total_men': (annual_totals['total_men'] or 0) / annual_global_total * 100,
+        'total_women': (annual_totals['total_women'] or 0) / annual_global_total * 100,
+        'total_youth': (annual_totals['total_youth'] or 0) / annual_global_total * 100,
+        'total_children': (annual_totals['total_children'] or 0) / annual_global_total * 100,
+        'total_visitors': (annual_totals['total_visitors'] or 0) / annual_global_total * 100,
+    }
+
+    context = {
+        'churches': churches,
+        'meetings': meetings,
+        'selected_church': selected_church,
+        'selected_meeting': selected_meeting,
+        'selected_year': year,
+        'selected_month': month,
+        'monthly_totals': monthly_totals,
+        'annual_totals': annual_totals,
+        'monthly_percentages_global': monthly_percentages_global,
+        'annual_percentages_global': annual_percentages_global,
+        'monthly_global_total': monthly_global_total,
+        'monthlyV_global_total': monthlyV_global_total,
+        'annual_global_total': annual_global_total,
+        'annualV_global_total': annualV_global_total,
+        'months': [(i, date(2000, i, 1).strftime('%B')) for i in range(1, 13)],
+        'years': range(current_year - 5, current_year + 1),
+    }
+
+    return render(request, 'meetings/cumuls.html', context)
+
+
+
+

@@ -31,12 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_daisy',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'tailwind',
     'theme',
   # Application
@@ -125,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'fr-fr'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -157,6 +159,7 @@ TAILWIND_APP_NAME = 'theme'
 
 
 MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 INTERNAL_IPS = [
     '127.0.0.1'
