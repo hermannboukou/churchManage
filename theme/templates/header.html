@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static tailwind_tags %}
 {% load static %}
 
@@ -186,6 +187,40 @@
                 </button>
                 <!-- Dark Mode Toggler -->
 
+                <!-- Language Switcher -->
+                <div
+                    class="relative"
+                    x-data="{ dropdownOpen: false }"
+                    @click.outside="dropdownOpen = false"
+                >
+                    <button
+                        class="hover:text-dark-900 relative flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+                        @click.prevent="dropdownOpen = !dropdownOpen"
+                    > 
+                    <!-- Lang -->
+                    <img class="m-2 h-10 w-10 overflow-hidden rounded-full" src="{% static 'src/images/language/language-translate-speech-bubbles-icon.svg' %}" alt="Logo"/>
+                    </button>
+                    <div
+                        x-show="dropdownOpen"
+                        class="shadow-theme-lg dark:bg-gray-dark absolute right-0 mt-[17px] flex w-40 flex-col rounded-2xl border border-gray-200 bg-white p-3 dark:border-gray-800"
+                    >
+                        <form action="{% url 'set_language' %}" method="post">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% for lang_code, lang_name in LANGUAGES %}
+                                <button type="submit" name="language" value="{{ lang_code }}" class="group text-theme-sm flex items-center gap-3 rounded-lg px-3 py-2 font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300 w-full {% if lang_code == LANGUAGE_CODE %} bg-gray-100 dark:bg-white/5 {% endif %}">
+                                    {{ lang_name }}
+                                </button>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+                <!-- End Language Switcher -->
+
+
+
                 <!-- Notification Menu Area -->
                 <div
                         class="relative"
@@ -300,299 +335,7 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a
-                                        class="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-                                        href="{% url 'dashboard' %}"
-                                >
-                  <span
-                          class="relative z-1 block h-10 w-full max-w-10 rounded-full"
-                  >
-                    <img
-                            src="{% static 'src/images/user/user-03.jpg' %}"
-                            alt="User"
-                            class="overflow-hidden rounded-full"
-                    />
-                    <span
-                            class="bg-success-500 absolute right-0 bottom-0 z-10 h-2.5 w-full max-w-2.5 rounded-full border-[1.5px] border-white dark:border-gray-900"
-                    ></span>
-                  </span>
 
-                                    <span class="block">
-                    <span
-                            class="text-theme-sm mb-1.5 block text-gray-500 dark:text-gray-400"
-                    >
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Alena Franci</span
-                      >
-                      requests permission to change
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Project - Nganter App</span
-                      >
-                    </span>
-
-                    <span
-                            class="text-theme-xs flex items-center gap-2 text-gray-500 dark:text-gray-400"
-                    >
-                      <span>Project</span>
-                      <span class="h-1 w-1 rounded-full bg-gray-400"></span>
-                      <span>8 min ago</span>
-                    </span>
-                  </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                        class="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-                                        href="{% url 'dashboard' %}"
-                                >
-                  <span
-                          class="relative z-1 block h-10 w-full max-w-10 rounded-full"
-                  >
-                    <img
-                            src="{% static 'src/images/user/user-04.jpg' %}"
-                            alt="User"
-                            class="overflow-hidden rounded-full"
-                    />
-                    <span
-                            class="bg-success-500 absolute right-0 bottom-0 z-10 h-2.5 w-full max-w-2.5 rounded-full border-[1.5px] border-white dark:border-gray-900"
-                    ></span>
-                  </span>
-
-                                    <span class="block">
-                    <span
-                            class="text-theme-sm mb-1.5 block text-gray-500 dark:text-gray-400"
-                    >
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Jocelyn Kenter</span
-                      >
-                      requests permission to change
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Project - Nganter App</span
-                      >
-                    </span>
-
-                    <span
-                            class="text-theme-xs flex items-center gap-2 text-gray-500 dark:text-gray-400"
-                    >
-                      <span>Project</span>
-                      <span class="h-1 w-1 rounded-full bg-gray-400"></span>
-                      <span>15 min ago</span>
-                    </span>
-                  </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                        class="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-                                        href="{% url 'dashboard' %}"
-                                >
-                  <span
-                          class="relative z-1 block h-10 w-full max-w-10 rounded-full"
-                  >
-                    <img
-                            src="src/images/user/user-05.jpg"
-                            alt="User"
-                            class="overflow-hidden rounded-full"
-                    />
-                    <span
-                            class="bg-error-500 absolute right-0 bottom-0 z-10 h-2.5 w-full max-w-2.5 rounded-full border-[1.5px] border-white dark:border-gray-900"
-                    ></span>
-                  </span>
-
-                                    <span class="block">
-                    <span
-                            class="text-theme-sm mb-1.5 block text-gray-500 dark:text-gray-400"
-                    >
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Brandon Philips</span
-                      >
-                      requests permission to change
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Project - Nganter App</span
-                      >
-                    </span>
-
-                    <span
-                            class="text-theme-xs flex items-center gap-2 text-gray-500 dark:text-gray-400"
-                    >
-                      <span>Project</span>
-                      <span class="h-1 w-1 rounded-full bg-gray-400"></span>
-                      <span>1 hr ago</span>
-                    </span>
-                  </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                        class="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-                                        href="{% url 'dashboard' %}"
-                                >
-                  <span
-                          class="relative z-1 block h-10 w-full max-w-10 rounded-full"
-                  >
-                    <img
-                            src="src/images/user/user-02.jpg"
-                            alt="User"
-                            class="overflow-hidden rounded-full"
-                    />
-                    <span
-                            class="bg-success-500 absolute right-0 bottom-0 z-10 h-2.5 w-full max-w-2.5 rounded-full border-[1.5px] border-white dark:border-gray-900"
-                    ></span>
-                  </span>
-
-                                    <span class="block">
-                    <span
-                            class="text-theme-sm mb-1.5 block text-gray-500 dark:text-gray-400"
-                    >
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Terry Franci</span
-                      >
-                      requests permission to change
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Project - Nganter App</span
-                      >
-                    </span>
-
-                    <span
-                            class="text-theme-xs flex items-center gap-2 text-gray-500 dark:text-gray-400"
-                    >
-                      <span>Project</span>
-                      <span class="h-1 w-1 rounded-full bg-gray-400"></span>
-                      <span>5 min ago</span>
-                    </span>
-                  </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                        class="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-                                        href="{% url 'dashboard' %}"
-                                >
-                  <span
-                          class="relative z-1 block h-10 w-full max-w-10 rounded-full"
-                  >
-                    <img
-                            src="src/images/user/user-03.jpg"
-                            alt="User"
-                            class="overflow-hidden rounded-full"
-                    />
-                    <span
-                            class="bg-success-500 absolute right-0 bottom-0 z-10 h-2.5 w-full max-w-2.5 rounded-full border-[1.5px] border-white dark:border-gray-900"
-                    ></span>
-                  </span>
-
-                                    <span class="block">
-                    <span
-                            class="text-theme-sm mb-1.5 block text-gray-500 dark:text-gray-400"
-                    >
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Alena Franci</span
-                      >
-                      requests permission to change
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Project - Nganter App</span
-                      >
-                    </span>
-
-                    <span
-                            class="text-theme-xs flex items-center gap-2 text-gray-500 dark:text-gray-400"
-                    >
-                      <span>Project</span>
-                      <span class="h-1 w-1 rounded-full bg-gray-400"></span>
-                      <span>8 min ago</span>
-                    </span>
-                  </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                        class="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-                                        href="{% url 'dashboard' %}"
-                                >
-                  <span
-                          class="relative z-1 block h-10 w-full max-w-10 rounded-full"
-                  >
-                    <img
-                            src="src/images/user/user-04.jpg"
-                            alt="User"
-                            class="overflow-hidden rounded-full"
-                    />
-                    <span
-                            class="bg-success-500 absolute right-0 bottom-0 z-10 h-2.5 w-full max-w-2.5 rounded-full border-[1.5px] border-white dark:border-gray-900"
-                    ></span>
-                  </span>
-
-                                    <span class="block">
-                    <span
-                            class="text-theme-sm mb-1.5 block text-gray-500 dark:text-gray-400"
-                    >
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Jocelyn Kenter</span
-                      >
-                      requests permission to change
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Project - Nganter App</span
-                      >
-                    </span>
-
-                    <span
-                            class="text-theme-xs flex items-center gap-2 text-gray-500 dark:text-gray-400"
-                    >
-                      <span>Project</span>
-                      <span class="h-1 w-1 rounded-full bg-gray-400"></span>
-                      <span>15 min ago</span>
-                    </span>
-                  </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a
-                                        class="flex gap-3 rounded-lg border-b border-gray-100 p-3 px-4.5 py-3 hover:bg-gray-100 dark:border-gray-800 dark:hover:bg-white/5"
-                                        href="{% url 'dashboard' %}"
-                                >
-                  <span
-                          class="relative z-1 block h-10 w-full max-w-10 rounded-full"
-                  >
-                    <img
-                            src="src/images/user/user-05.jpg"
-                            alt="User"
-                            class="overflow-hidden rounded-full"
-                    />
-                    <span
-                            class="bg-error-500 absolute right-0 bottom-0 z-10 h-2.5 w-full max-w-2.5 rounded-full border-[1.5px] border-white dark:border-gray-900"
-                    ></span>
-                  </span>
-
-                                    <span class="block">
-                    <span
-                            class="text-theme-sm mb-1.5 block text-gray-500 dark:text-gray-400"
-                    >
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Brandon Philips</span
-                      >
-                      requests permission to change
-                      <span class="font-medium text-gray-800 dark:text-white/90"
-                      >Project - Nganter App</span
-                      >
-                    </span>
-
-                    <span
-                            class="text-theme-xs flex items-center gap-2 text-gray-500 dark:text-gray-400"
-                    >
-                      <span>Project</span>
-                      <span class="h-1 w-1 rounded-full bg-gray-400"></span>
-                      <span>1 hr ago</span>
-                    </span>
-                  </span>
-                                </a>
-                            </li>
                         </ul>
 
                         <a
@@ -622,25 +365,6 @@
             <img src="{% static 'src/images/user/owner.png' %}" alt="User"/>
           </span>
 
-                    <!-- <span class="text-theme-sm mr-1 block font-medium"> Musharof </span>
-
-                     <svg
-                             :class="dropdownOpen && 'rotate-180'"
-                             class="stroke-gray-500 dark:stroke-gray-400"
-                             width="18"
-                             height="20"
-                             viewBox="0 0 18 20"
-                             fill="none"
-                             xmlns="http://www.w3.org/2000/svg"
-                     >
-                         <path
-                                 d="M4.3125 8.65625L9 13.3437L13.6875 8.65625"
-                                 stroke=""
-                                 stroke-width="1.5"
-                                 stroke-linecap="round"
-                                 stroke-linejoin="round"
-                         />
-                     </svg>-->
                 </a>
 
                 <!-- Dropdown Start -->
@@ -657,8 +381,6 @@
                         <span
                                 class="text-theme-xs mt-0.5 block text-gray-500 dark:text-gray-400"
                         >
-              <a href="" class="__cf_email__"
-                 data-cfemail="e89a89868c87859d9b8d9aa89881858287c68b8785">[email&#160;protected]</a>
             </span>
                     </div>
 

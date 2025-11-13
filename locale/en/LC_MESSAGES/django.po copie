@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-23 11:48+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: meetings/templates/meetings/audience_report.html:109
+msgid "Church"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:111
+msgid "All Church"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:122
+msgid "Team"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:124
+msgid "All Teams"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:135
+msgid "Month"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:147
+#: meetings/templates/meetings/graphique_annuel.html:107
+msgid "Year"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:165
+msgid "Hearing Report"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:165
+msgid "AGG POTTER'S HOUSE"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:169
+msgid "Date"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:170 meetings/views.py:336
+msgid "Men"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:171 meetings/views.py:336
+msgid "Wommen"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:172 meetings/views.py:336
+msgid "Youth"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:173 meetings/views.py:336
+msgid "Children"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:174
+msgid "Visitors"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:175
+msgid "Total"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:191
+msgid "Aucune donnée disponible pour cette période"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:198
+msgid "TOTAUX"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:211
+msgid "MOYENNES"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:231
+#: meetings/templates/meetings/cumuls.html:103
+msgid "Afficher le graphique"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:237
+msgid "Imprimer le rapport"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:446
+msgid "Janvier"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:446
+msgid "Février"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:446
+msgid "Mars"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:447
+msgid "Avril"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:447
+msgid "Mai"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:447
+msgid "Juin"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:448
+msgid "Juillet"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:448
+msgid "Août"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:448
+msgid "Septembre"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:449
+msgid "Octobre"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:449
+msgid "Novembre"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:449
+msgid "Décembre"
+msgstr ""

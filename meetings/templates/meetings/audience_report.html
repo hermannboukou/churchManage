@@ -108,7 +108,7 @@
                 <div>
                     <label class="block text-sm font-medium mb-2">{% trans "Église" %}</label>
                     <select name="church" class="w-full p-2 border rounded bg-white dark:bg-gray-700" onchange="submitForm()">
-                        <option value="">{% trans "Toutes les églises" %}</option>
+                        <option value="">{% trans "Toutes-les-églises" %}</option>
                         {% for church in churches %}
                         <option value="{{ church.id }}" {% if selected_church == church.id %}selected{% endif %}>
                             {{ church.name }}

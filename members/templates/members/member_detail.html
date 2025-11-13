@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container mx-auto px-4 py-8">
     <div class="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
+    
         <div class="flex items-center justify-between mb-4">
             <h1 class="text-2xl font-bold text-gray-800 dark:text-white">{{ member.first_name }} {{ member.last_name }}</h1>
             <div>
@@ -14,8 +15,11 @@
                 </a>
             </div>
         </div>
+        
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
             <div class="md:col-span-1">
+                
                 {% if member.photo %}
                     <img src="{{ member.photo.url }}" alt="Photo de {{ member.first_name }}" class="w-full h-auto rounded-lg">
                 {% else %}
@@ -66,7 +70,85 @@
                     </div>
                 </dl>
             </div>
+        </div> 
+    </div>
+</div>
+
+
+
+
+<div class="border-t border-gray-100 p-4 sm:p-6 dark:border-gray-800">
+  <div class="grid grid-cols-1 gap-5 xl:grid-cols-2">
+
+  <!-- Card Item -->
+    <div>
+        <div class="flex flex-col gap-5 rounded-xl border border-gray-200 bg-white p-4 dark:border-gray-800 dark:bg-white/[0.03] sm:flex-row sm:items-center sm:gap-6">
+
+
+        <div class="overflow-hidden rounded-md">
+            <img src="{{ member.photo.url }}" alt="Photo de {{ member.first_name }}" alt="card" class="overflow-hidden rounded-lg">
+        </div>
+
+        <div>
+            <!-- <h4 class="mb-1 text-theme-xl font-medium text-gray-800 dark:text-white/90">
+            Card title
+            </h4>
+
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
+            architecto aspernatur cum et ipsum
+            </p>
+
+            <a href="cards.html#" class="mt-4 inline-flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-3 text-sm font-medium text-white shadow-theme-xs hover:bg-brand-600">
+            Read more
+            </a> -->
+
+                <dl class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Email</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.email }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Téléphone</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.phone }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Sexe</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.get_gender_display }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Date de naissance</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.date_of_birth }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Adresse</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.address }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Pays</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.country.name }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Statut</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.get_status_display }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Membre Actif</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{% if member.is_active %}Oui{% else %}Non{% endif %}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Profession</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.profession }}</dd>
+                    </div>
+                    <div class="sm:col-span-1">
+                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">État civil</dt>
+                        <dd class="mt-1 text-sm text-gray-900 dark:text-white">{{ member.get_marital_status_display }}</dd>
+                    </div>
+                </dl>
+        </div>
         </div>
     </div>
+
+  </div>
 </div>
 {% endblock %}

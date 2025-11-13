@@ -1,0 +1,229 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-23 12:04+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: meetings/templates/meetings/audience_report.html:109
+msgid "Église"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:111
+msgid "Toutes-les-églises"
+msgstr "Toutes les églises"
+
+#: meetings/templates/meetings/audience_report.html:122
+msgid "Réunion"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:124
+msgid "Toutes les réunions"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:135
+msgid "Mois"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:147
+#: meetings/templates/meetings/graphique_annuel.html:107
+msgid "Année"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:165
+msgid "Rapport d'Audiences"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:165
+msgid "ADG MAISON DU POTIER"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:169
+msgid "Date"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:170 meetings/views.py:336
+msgid "Hommes"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:171 meetings/views.py:336
+msgid "Femmes"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:172 meetings/views.py:336
+msgid "Jeunes"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:173 meetings/views.py:336
+msgid "Enfants"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:174
+msgid "Visiteurs"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:175
+msgid "Total"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:191
+msgid "Aucune donnée disponible pour cette période"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:198
+msgid "TOTAUX"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:211
+msgid "MOYENNES"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:231
+#: meetings/templates/meetings/cumuls.html:103
+msgid "Afficher le graphique"
+msgstr ""
+
+#: meetings/templates/meetings/audience_report.html:237
+msgid "Imprimer le rapport"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:446
+msgid "Janvier"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:446
+msgid "Février"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:446
+msgid "Mars"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:447
+msgid "Avril"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:447
+msgid "Mai"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:447
+msgid "Juin"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:448
+msgid "Juillet"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:448
+msgid "Août"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:448
+msgid "Septembre"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:449
+msgid "Octobre"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:449
+msgid "Novembre"
+msgstr ""
+
+#: meetings/views.py:325 meetings/views.py:449
+msgid "Décembre"
+msgstr ""
+
+#: theme/templates/dashboard.html:45
+msgid "Customers"
+msgstr "Clients"
+
+#: theme/templates/dashboard.html:104
+msgid "Orders"
+msgstr "Commandes"
+
+#: theme/templates/dashboard.html:145
+msgid "Monthly Sales"
+msgstr "Ventes mensuelles"
+
+#: theme/templates/dashboard.html:208
+msgid "Monthly Target"
+msgstr "Objectif mensuel"
+
+#: theme/templates/dashboard.html:367
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: theme/templates/dashboard.html:446
+msgid "Customers Demographic"
+msgstr "Démographie des clients"
+
+#: theme/templates/dashboard.html:578
+msgid "Recent Orders"
+msgstr "Commandes récentes"
+
+#: theme/templates/dashboard.html:643
+msgid "Products"
+msgstr "Produits"
+
+#: theme/templates/dashboard.html:652
+msgid "Category"
+msgstr "Catégorie"
+
+#: theme/templates/dashboard.html:661
+msgid "Price"
+msgstr "Prix"
+
+#: theme/templates/dashboard.html:670
+msgid "Status"
+msgstr "Statut"
+
+#: theme/templates/profile.html:14
+msgid "Mon Profil"
+msgstr ""
+
+#: theme/templates/profile.html:20
+msgid "Informations utilisateur"
+msgstr ""
+
+#: theme/templates/profile.html:27
+msgid "Nom complet"
+msgstr ""
+
+#: theme/templates/profile.html:35
+msgid "Email"
+msgstr ""
+
+#: theme/templates/settings.html:15
+msgid "Paramètres"
+msgstr ""
+
+#: theme/templates/settings.html:22
+msgid "Préférences d'affichage"
+msgstr ""
+
+#: theme/templates/settings.html:28
+msgid "Mode sombre"
+msgstr ""
+
+#: theme/templates/settings.html:36
+msgid "Notifications"
+msgstr ""
+
+#: theme/templates/settings.html:42
+msgid "Recevoir les notifications par email"
+msgstr ""
