@@ -20,6 +20,7 @@ urlpatterns += i18n_patterns(
     path('meetings/', include('meetings.urls')),
     path('members/', include('members.urls')),
     path('school/', include('school.urls')),
+    path('baptisma/', include('baptisma_core.urls')),
 
 )
 

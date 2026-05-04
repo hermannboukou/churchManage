@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAPTISMA-CORE - Tableau de bord</title>
+</head>
+<body>
+    <h1>BAPTISMA-CORE</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if not pathway %}
+        <p>Aucun parcours actif n'est disponible.</p>
+    {% else %}
+        <p><strong>Parcours:</strong> {{ pathway.title }}</p>
+        <p>{{ pathway.description }}</p>
+        <p><strong>Progression globale:</strong> {{ progress_percent }}% ({{ completed_lessons }}/{{ total_lessons }})</p>
+
+        <h2>Modules et leçons</h2>
+        {% for card in module_cards %}
+            <section>
+                <h3>{{ card.module.order }}. {{ card.module.title }}</h3>
+                <ul>
+                    {% for row in card.lessons %}
+                            <li>
+                                {% if row.progress and row.progress.status != 'LOCKED' %}
+                                    <a href="{% url 'baptisma_core:lesson_detail' row.lesson.id %}">{{ row.lesson.title }}</a>
+                                {% else %}
+                                    {{ row.lesson.title }}
+                                {% endif %}
+                                {% if row.progress %}
+                                    — {{ row.progress.status }}
+                                {% endif %}
+                            </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endfor %}
+
+        <h2>Badges</h2>
+        <ul>
+            {% for badge in badges %}
+                <li>{{ badge.module.badge_name|default:badge.module.title }} ({{ badge.awarded_at }})</li>
+            {% empty %}
+                <li>Aucun badge pour le moment.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

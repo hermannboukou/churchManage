@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAPTISMA-CORE - Instructeur</title>
+</head>
+<body>
+    <h1>Espace Instructeur</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Progressions en attente de validation manuelle</h2>
+    <ul>
+        {% for progress in pending_validation %}
+            <li>
+                {{ progress.user.username }} — {{ progress.lesson.module.title }} / {{ progress.lesson.title }}
+                <form method="post" action="{% url 'baptisma_core:validate_progress' progress.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Valider</button>
+                </form>
+            </li>
+        {% empty %}
+            <li>Aucune validation en attente.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'baptisma_core:dashboard' %}">Retour au parcours</a></p>
+</body>
+</html>

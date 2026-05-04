@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'tailwind',
     'theme',
+    'baptisma_core.apps.BaptismaCoreConfig',
   # Application
     'core.apps.CoreConfig',
     'church.apps.ChurchConfig',

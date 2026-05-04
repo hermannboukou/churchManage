@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ lesson.title }} - BAPTISMA-CORE</title>
+</head>
+<body>
+    <h1>{{ lesson.title }}</h1>
+    <p><strong>Module:</strong> {{ lesson.module.title }}</p>
+    <p><strong>Score de validation:</strong> {{ lesson.passing_score }}%</p>
+
+    {% if lesson.key_verse_reference or lesson.key_verse_text %}
+        <section>
+            <h2>Verset clé</h2>
+            <p><strong>{{ lesson.key_verse_reference }}</strong></p>
+            <blockquote>{{ lesson.key_verse_text }}</blockquote>
+        </section>
+    {% endif %}
+
+    <section>
+        <h2>Contenu</h2>
+        <p>{{ lesson.content|linebreaks }}</p>
+    </section>
+
+    <section>
+        <h2>Quiz</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% for question in questions %}
+                <fieldset>
+                    <legend>{{ question.order }}. {{ question.statement }}</legend>
+                    {% for option in question.options %}
+                        <label>
+                            <input type="radio" name="question_{{ question.id }}" value="{{ option }}" required>
+                            {{ option }}
+                        </label><br>
+                    {% endfor %}
+                </fieldset>
+            {% empty %}
+                <p>Aucune question disponible pour cette leçon.</p>
+            {% endfor %}
+            <button type="submit">Soumettre le quiz</button>
+        </form>
+    </section>
+
+    <p><a href="{% url 'baptisma_core:dashboard' %}">Retour au tableau de bord</a></p>
+</body>
+</html>
